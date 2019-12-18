@@ -23,7 +23,7 @@ $(PROGRAM): $(OBJ)
 	ranlib $(PROGRAM)
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -I includes/
+	${CC} ${CFLAGS} -c $<
 
 clean:
 	rm -f $(OBJ)
