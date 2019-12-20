@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_matrix.c                                    :+:      :+:    :+:   */
+/*   letter_replacement.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/11 17:19:07 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/12 17:01:54 by calpha           ###   ########.fr       */
+/*   Created: 2019/12/18 13:00:11 by calpha            #+#    #+#             */
+/*   Updated: 2019/12/20 12:30:39 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char *create_matrix(int a)
+char	**letter_replacement(char **s)
 {
-	char *matrix;
+	char *letter;
 	int i;
-	int k;
+	int j;
 
 	i = 0;
-	k = a;
-	matrix = (char *)malloc(((a * a + a) + 1) * sizeof(char));
-	matrix = ft_memset(matrix, '.', (a * a + a));
-	matrix[(a * a + a)] = '\0';
-	while (i < a)
+	letter = "0ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	while (s[i] != NULL)
 	{
-		*(matrix + k) = '\n';
-		k = k + a + 1;
+		j = 0;
+		while(s[i][j] != '\0')
+		{
+			if (s[i][j] == '#')
+				s[i][j] = letter[i];
+			j++;
+		}
 		i++;
 	}
-	return (matrix);
+	return (s);
 }

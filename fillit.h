@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/18 17:58:58 by calpha           ###   ########.fr       */
+/*   Updated: 2019/12/20 18:10:10 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,15 @@
 
 typedef struct			s_tetramino
 {
-	int					blockcoords[8];
-	char				letter;
+	int					*blockcoords;
 	int					x;
 	int					y;
+	char				letter;
 	struct s_tetramino	*next;
 }						t_tetramino;
 
-char					**cut_tetramino(char const *s);
-char					**move_tetramino_to_zero(char **s);
-
-void					algoritm(char *s);
-
-int						count_octothorpe(char *array);
-char					*create_matrix(int a);
-
-char					**letter_replacement(char **s);
-
+t_tetramino				*create_list(char *s);
+int						*node_filling(char *s, int count);
+char					*create_map(char *array);
+char					*algorithm(t_tetramino *t, char *s);
 #endif

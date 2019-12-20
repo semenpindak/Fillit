@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_octothorpe.c                                 :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/11 17:13:27 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/18 14:39:21 by calpha           ###   ########.fr       */
+/*   Created: 2019/12/20 17:01:16 by calpha            #+#    #+#             */
+/*   Updated: 2019/12/20 17:32:26 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int count_octothorpe(char *array)
+int	count_octothorpe(char *array)
 {
 	int i;
 
@@ -24,4 +24,26 @@ int count_octothorpe(char *array)
 		array++;
 	}
 	return (i);
+}
+
+char	*create_map(char *array)
+{
+	char *matrix;
+	int i;
+	int a;
+	int k;
+
+	i = 0;
+	a = ft_sqrt(count_octothorpe(array));
+	k = a;
+	matrix = (char *)malloc(((a * a + a) + 1) * sizeof(char));
+	matrix = ft_memset(matrix, '.', (a * a + a));
+	matrix[(a * a + a)] = '\0';
+	while (i < a)
+	{
+		*(matrix + k) = '\n';
+		k = k + a + 1;
+		i++;
+	}
+	return (matrix);
 }

@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   letter_replacement.c                               :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 13:00:11 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/18 13:13:33 by calpha           ###   ########.fr       */
+/*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
+/*   Updated: 2019/12/20 19:17:16 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**letter_replacement(char **s)
+char *algorithm(t_tetramino *work_list, char *s)
 {
-	char *letter;
-	int i;
-	int j;
+	int i = 0;
+	int j = 0;
+	int *check;
 
-	i = 0;
-	letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	while (s[i] != NULL)
+	check = (int *)malloc(8 * sizeof(int));
+	while (s[i] != '\0')
 	{
-		j = 0;
-		while(s[i][j] != '\0')
-		{
-			if (s[i][j] == '#')
-				s[i][j] = letter[i];
-			j++;
-		}
-		i++;
-	}
+		if (s[i] == '.')
+        {
+
+            // if (work_list->blockcoords[j] == i % 4)
+            // 	j++;
+            // if (work_list->blockcoords[j] = i / 4)
+            // 	j++;
+        }
+        // if (j == 8)
+        //   break;
+        i++;
+    }
+
+
 	return (s);
 }

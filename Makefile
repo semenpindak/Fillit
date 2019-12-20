@@ -1,11 +1,9 @@
 CFLAGS:= -Wall -Wextra -Werror
 SRCS:=	fillit.c\
-		count_octothorpe.c\
-		create_matrix.c\
-		cut_tetramino.c\
-		move_tetramino_to_zero.c\
-		letter_replacement.c\
-		algoritm.c
+		create_list.c\
+		node_filling.c\
+		create_map.c\
+		algorithm.c
 OBJ:= $(SRCS:c=o)
 PROGRAM = fillit
 
