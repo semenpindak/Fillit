@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 11:56:06 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/20 16:40:26 by calpha           ###   ########.fr       */
+/*   Updated: 2019/12/23 14:38:18 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void push(t_tetramino **head, char *s, int count)
 {
     t_tetramino *tmp;
     int *blockcoords;
-
     tmp = (t_tetramino*)malloc(sizeof(t_tetramino));
     blockcoords = (int*)malloc(8 * sizeof(int));
     tmp->blockcoords = node_filling(s, count);

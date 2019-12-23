@@ -6,38 +6,45 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 13:06:32 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/20 17:30:01 by calpha           ###   ########.fr       */
+/*   Updated: 2019/12/23 16:25:05 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static char	*move_octothorpe(int k, char *s)
+int        *move_tetramino_to_zero(int *s)
 {
-	int i;
+    int i;
+    int minx;
+    int miny;
 
-	i = 0;
-	while(s[i] != '\0')
-	{
-		if (s[i] == '#')
-		{
-			s[i] = '.';
-			s[i - k] = '#';
-		}
-		i++;
-	}
-	return (s);
-}
-
-char		*move_tetramino_to_zero(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '#')
-		i++;
-	move_octothorpe(i, s);
-	return(s);
+    i = 0;
+    minx = 4;
+    miny = 4;
+    while (i < 8)
+    {
+        if (i % 2 == 0)
+        {
+            if (minx > s[i])
+                minx = s[i];
+        }
+        else
+        {
+            if (miny > s[i])
+                miny = s[i];
+        }
+        i++;
+    }
+    i = 0;
+    while (i < 8)
+    {
+        if (i % 2 == 0)
+            s[i] = s[i] - minx;
+        else
+            s[i] = s[i] - miny;
+        i++;
+    }
+    return(s);
 }
 
 int *converting_array_to_coord(char *s)
@@ -48,6 +55,7 @@ int *converting_array_to_coord(char *s)
 
     i = 0;
     j = 0;
+    // int k = 0;
     if (!(array_coord = (int*)malloc(8 * sizeof(int))))
         return (NULL);
     while (s[i] != '\0')
@@ -63,6 +71,13 @@ int *converting_array_to_coord(char *s)
           break;
         i++;
     }
+    array_coord = move_tetramino_to_zero(array_coord);
+    // while (k < 8)
+    // {
+    //     printf("%d ", array_coord[k]);
+    //     k++;
+    // }
+    // printf("\n");
     return(array_coord);
 }
 
@@ -101,6 +116,7 @@ int *node_filling(char *s, int count)
 
     i = 21 * (count / 4 - 1);
     tmp = fillit_strsub(s, i, 16);
-    tmp = move_tetramino_to_zero(tmp);
+    // printf("%s\n", tmp);
+    // printf("%s\n", tmp);
     return (converting_array_to_coord(tmp));
 }

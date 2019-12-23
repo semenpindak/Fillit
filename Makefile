@@ -12,7 +12,7 @@ all: $(PROGRAM)
 
 $(PROGRAM): ${OBJ}
 	make -C libft/
-	${CC} $(CFLAGS) ${OBJ} -o $@ -L libft/ -lft
+	${CC} $(CFLAGS) ${OBJ} -o $@ -L libft/ -lft -g
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $<

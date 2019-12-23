@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/20 18:13:52 by calpha           ###   ########.fr       */
+/*   Updated: 2019/12/23 15:07:04 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main (int argc, char *argv[])
 	char		buffer[BUFF_SIZE + 1];
 	t_tetramino	*work_list;
 	char *s;
+	// int i;
 
 	if (argc == 2)
 	{
@@ -33,7 +34,7 @@ int main (int argc, char *argv[])
 
 	algorithm(work_list, s);
 
-	// 	printf("%s\n", s);
+	// printf("%s\n", s);
 	// while (work_list->next != NULL)
 	// {
 	// 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 17:01:16 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/20 17:32:26 by calpha           ###   ########.fr       */
+/*   Updated: 2019/12/23 12:43:26 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_octothorpe(char *array)
 
 char	*create_map(char *array)
 {
-	char *matrix;
+	static char *matrix;
 	int i;
 	int a;
 	int k;
