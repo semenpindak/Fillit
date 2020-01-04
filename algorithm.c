@@ -6,131 +6,239 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/27 15:50:31 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/04 21:17:09 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int check_transfer(t_tetramino *work_list, int j, int si)
+int count_slash_n(char *s)
 {
-    int tmp;
+    int i;
+    int n;
 
-    tmp = work_list->blockcoords[j - 3];
-    printf ("check tmp = %d ", tmp);
-    tmp++;
-    printf ("j = %d ", j);
-    printf ("check si = %d ", si);
-    printf ("check tmp++ = %d\n", tmp);
-    if (si == tmp)
-        return (1);
-    else
-        return (0);
+    i = 0;
+    n = 0;
+    while (s[i] != '\0')
+    {
+        if(s[i] == '\n')
+            n++;
+        i++;
+    }
+    return (n);
 }
 
-
-void move_tetramino_on_step(t_tetramino *work_list, char *s)
+int move_start_down_string(int *check_trans, int *checko)
 {
     int i = 0;
-    int j = 0;
     int m = 0;
-    int si = 0;
-    int k = 0;
-    int tmp;
-    int tmpx;
-    int tmpy;
+    int *tmp;
+    int tmpx = 0;
+    int tmpy = 0;
     int raznica = 0;
+    tmp = (int *)malloc(8 * sizeof(int));
 
+    i = 0;
+    while (i < 8)
+    {
+        tmp[i] = check_trans[i];
+        i++;
+    }
+    // printf("%d %d %d %d %d %d %d %d\n", tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7]);
+
+    i = 0;
+        while (m < 8)
+        {
+            if (m == 0)
+                raznica = tmp[i];
+            if (m % 2 == 0)
+            {
+                tmpx = tmp[i];
+                tmpx = tmpx - raznica;
+                tmp[i] = tmpx;
+            }
+            if (m % 2 != 0)
+            {
+                tmpy = tmp[i];
+                tmpy++;
+                tmp[i] = tmpy;
+            }
+            i++;
+            m++;
+        }
+        // printf("%d %d %d %d %d %d %d %d\n", tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7]);
+        // printf("%d %d \n", checko[0], checko[1]);
+        if (tmp[1] == checko[1])
+            return (-1);
+        if (tmp[3] == checko[1])
+            return (-1);
+        if (tmp[5] == checko[1])
+            return (-1);
+        if (tmp[7] == checko[1])
+            return (-1);
+        return (1);
+}
+
+int check_transfer(t_tetramino *work_list, char *s)
+{
+    int i;
+    int j;
+    // int k = 0;
+    int n;
+    int m = 0;
+    int tmp;
+    int *coord_n;
+    int *coord_terminate;
+    int *check_trans;
+
+    i = 0;
+    j = 0;
+    n = count_slash_n(s);
+    coord_n = (int *)malloc(n * 2 * sizeof(int));
+    coord_terminate = (int *)malloc(2 * sizeof(int));
+    check_trans = (int *)malloc(8 * sizeof(int));
     while (s[i] != '\0')
     {
         if (s[i] == '\n')
         {
-            k = i + 1;
-            si = i % k;
-            break;
+            coord_n[j] = i % 4;
+            j++;
+            coord_n[j] = i / 4;
+            j++;
         }
         i++;
     }
+    j = 0;
+    if (s[i] == '\0')
+    {
+        coord_terminate[j] = i % 4;
+        j++;
+        coord_terminate[j] = i / 4;
+    }
+
+    i = 0;
+    while (i < 8)
+    {
+        check_trans[i] = work_list->blockcoords[i];
+        i++;
+    }
+
+    i = 0;
+    while (m < 8)
+    {
+        if (m % 2 == 0)
+        {
+            tmp = check_trans[i];
+            tmp++;
+            check_trans[i] = tmp;
+        }
+        i++;
+        m++;
+    }
+
+    // printf("%d %d %d %d %d %d %d %d\n", check_trans[0], check_trans[1], check_trans[2], check_trans[3], check_trans[4],check_trans[5], check_trans[6], check_trans[7]);
 
     j = 0;
-    while (j < 8)
+    while (j < n * 2)
     {
-        if ((j % 2) != 0)
+        i = 0;
+        while (i < 8)
         {
-            if ((work_list->blockcoords[j] - work_list->blockcoords[j - 2]) == 1)
+
+            if (check_trans[i] == coord_n[j])
             {
-                // printf ("j = %d\n", j);
-                break;
+                i++;
+                j++;
+                if (check_trans[i] == coord_n[j])
+                {
+                    if (move_start_down_string(check_trans, coord_terminate) == 1)
+                        return (1);
+                    else
+                        return (-1);
+                }
+                else
+                {
+                    i--;
+                    j--;
+                }
             }
+            i = i + 2;
         }
-        j++;
+        j = j + 2;
     }
+    return (0);
+}
 
-    k = 0;
-    while (k < 8)
-    {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
-    }
-    printf("\n");
 
-    if (check_transfer(work_list, j, si) == 0)
+int move_tetramino_on_step(t_tetramino *work_list, char *s)
+{
+    int i = 0;
+    int m = 0;
+    // int k = 0;
+    int tmp;
+    int tmpx;
+    int tmpy;
+    int raznica = 0;
+    int r = 0;
+
+    // k = 0;
+    // while (k < 8)
+    // {
+    //     printf("%d ", work_list->blockcoords[k]);
+    //     k++;
+    // }
+    // printf("\n");
+
+    r = check_transfer(work_list, s);
+    if (r == 0)
     {
-        j = 0;
-        m = 0;
         while (m < 8)
         {
             if (m % 2 == 0)
             {
-                tmp = work_list->blockcoords[j];
+                tmp = work_list->blockcoords[i];
                 tmp++;
-                work_list->blockcoords[j] = tmp;
+                work_list->blockcoords[i] = tmp;
             }
-            j++;
+            i++;
             m++;
         }
+        return (1);
     }
-
-    k = 0;
-    while (k < 8)
+    if (r == 1)
     {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
-    }
-    printf("\n");
-
-    if (check_transfer(work_list, j, si) == 1)
-    {
-        j = 0;
-        m = 0;
         while (m < 8)
         {
             if (m == 0)
-                raznica = work_list->blockcoords[j];
+                raznica = work_list->blockcoords[i];
             if (m % 2 == 0)
             {
-                tmpx = work_list->blockcoords[j];
+                tmpx = work_list->blockcoords[i];
                 tmpx = tmpx - raznica;
-                work_list->blockcoords[j] = tmpx;
+                work_list->blockcoords[i] = tmpx;
             }
             if (m % 2 != 0)
             {
-                tmpy = work_list->blockcoords[j];
+                tmpy = work_list->blockcoords[i];
                 tmpy++;
-                work_list->blockcoords[j] = tmpy;
+                work_list->blockcoords[i] = tmpy;
             }
-            j++;
+            i++;
             m++;
         }
+        return (1);
     }
+    if (r == -1)
+        return (-1);
+    // k = 0;
+    // while (k < 8)
+    // {
+    //     printf("%d ", work_list->blockcoords[k]);
+    //     k++;
+    // }
+    // printf("\n");
+    return (0);
 
-    k = 0;
-    while (k < 8)
-    {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
-    }
-    printf("\n");
 
 }
 
@@ -139,10 +247,9 @@ int insert_tetramino_on_map(t_tetramino *work_list, char *s)
     int i = 0;
     int j = 0;
     int k = 0;
-    int getup;
     int a;
     int z = 0;
-     while (s[i] != '\0')
+    while (s[i] != '\0')
     {
         if (s[i] == '.')
         {
@@ -155,6 +262,8 @@ int insert_tetramino_on_map(t_tetramino *work_list, char *s)
                     j++;
                     s[i] = work_list->letter;
                 }
+                else
+                    j--;
             }
         }
         z++;
@@ -165,64 +274,87 @@ int insert_tetramino_on_map(t_tetramino *work_list, char *s)
         }
         i++;
         if (j == 8)
-            getup = 0;
-        else
-            getup = 1;
+            return (1);
     }
-    return (getup);
+    return (0);
 }
 
 
 char *algorithm(t_tetramino *work_list, char *s)
 {
     // int k = 0;
-    static char *sm = NULL;
+    char *sm = NULL;
     // int n = 0;
     // printf("%s\n", s);
     sm = ft_strdup(s);
-    // while (work_list != NULL)
+    // while (work_list->next != NULL)
     // {
-        insert_tetramino_on_map(work_list, sm);
-        printf("1.\n%s\n", sm);
+    //     while (insert_tetramino_on_map(work_list, sm) != 0)
+    //         move_tetramino_on_step(work_list, sm);
+    //     // printf("1.\n%s\n", sm);
+    //     work_list = work_list->next;
+    //     if (work_list->next == NULL)
+    //     {
+    //         while (insert_tetramino_on_map(work_list, sm) != 0)
+    //             move_tetramino_on_step(work_list, sm);
 
-        move_tetramino_on_step(work_list, sm);
-        sm = ft_strdup(s);
-        insert_tetramino_on_map(work_list, sm);
-        printf("2.\n%s\n", sm);
-
-        move_tetramino_on_step(work_list, sm);
-        sm = ft_strdup(s);
-        insert_tetramino_on_map(work_list, sm);
-        printf("3.\n%s\n", sm);
-
-        move_tetramino_on_step(work_list, sm);
-        sm = ft_strdup(s);
-        insert_tetramino_on_map(work_list, sm);
-        printf("4.\n%s\n", sm);
-
-        // work_list = work_list->next;
-
-        // insert_tetramino_on_map(work_list, sm);
-        // printf("\n2.\n%s\n", sm);
-    //     while (k < 8)
-    // {
-    //     printf("%d ", work_list->blockcoords[k]);
-    //     k++;
+    //     }
     // }
-// printf("\n");
+    // printf("1.\n%s\n", sm);
+
+        printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        printf("\n1.\n%s\n", sm);
+
+        sm = ft_strdup(s);
+        printf ("move %d ", move_tetramino_on_step(work_list, sm));
+        printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        printf("\n2.\n%s\n", sm);
+
+        sm = ft_strdup(s);
+        printf ("move %d ", move_tetramino_on_step(work_list, sm));
+        printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        printf("\n3.\n%s\n", sm);
+
+        // sm = ft_strdup(s);
+        // printf ("move %d ", move_tetramino_on_step(work_list, sm));
+        // printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        // printf("\n4.\n%s\n", sm);
+
+        // sm = ft_strdup(s);
+        // printf ("move %d ", move_tetramino_on_step(work_list, sm));
+        // printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        // printf("\n5.\n%s\n", sm);
+
+        work_list = work_list->next;
+        // sm = ft_strdup(s);
+        printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        printf("\n1.\n%s\n", sm);
+        move_tetramino_on_step(work_list, sm);
+
+        // sm = ft_strdup(s);
+        // printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        // printf("\n1.\n%s\n", sm);
         // move_tetramino_on_step(work_list, sm);
-    //     k =0;
-    //     while (k < 8)
-    // {
-    //     printf("%d ", work_list->blockcoords[k]);
-    //     k++;
-    // }
-        // printf("\n");
-        // insert_tetramino_on_map(work_list, sm);
-        // printf("\n3.\n%s\n", sm);
+
+        // sm = ft_strdup(s);
+        // printf ("insert %d ", insert_tetramino_on_map(work_list, sm));
+        // printf("\n1.\n%s\n", sm);
+        // move_tetramino_on_step(work_list, sm);
 
 
-    // }
+        // printf("1.\n%s\n", sm);
 
+
+        // if (work_list->next == NULL)
+        // {
+        //     while (insert_tetramino_on_map(work_list, sm) != 0)
+        //         move_tetramino_on_step(work_list, sm);
+        //     // printf("1.\n%s\n", sm);
+        // }
+
+
+
+
+    // printf("1.\n%s\n", sm);
 	return (s);
 }
