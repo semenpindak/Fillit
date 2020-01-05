@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/20 18:10:10 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/05 20:43:16 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ typedef struct			s_tetramino
 
 t_tetramino				*create_list(char *s);
 int						*node_filling(char *s, int count);
-char					*create_map(char *array);
+char					*create_map(t_tetramino work_list, char *array);
 char					*algorithm(t_tetramino *t, char *s);
 #endif

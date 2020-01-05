@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2019/12/23 15:07:04 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/05 17:49:03 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ int main (int argc, char *argv[])
 		exit(0);
 	}
 	work_list = create_list(buffer);
-	s = create_map(buffer);
+	s = create_map(*work_list, buffer);
 
-	algorithm(work_list, s);
+	s = algorithm(work_list, s);
+	printf("%s", s);
+
+
 
 	// printf("%s\n", s);
 	// while (work_list->next != NULL)
