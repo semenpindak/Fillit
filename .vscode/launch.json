@@ -8,11 +8,12 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/fillit",
-			"args": ["/Users/calpha/Documents/Fillit/primer/1t.txt"] "stopAtEntry": false,
+			"program": "/Users/calpha/Documents/Fillit/fillit",
+			"args": ["/Users/calpha/Documents/Fillit/primer/5.txt"],
+			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"externalConsole": false,
+			"externalConsole": true,
 			"MIMode": "lldb"
 		}
 	]

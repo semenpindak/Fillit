@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/05 17:49:03 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/07 16:05:03 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main (int argc, char *argv[])
 	s = create_map(*work_list, buffer);
 
 	s = algorithm(work_list, s);
-	printf("%s", s);
+	ft_putstr(s);
 
 
 

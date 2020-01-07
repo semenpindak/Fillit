@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/05 20:43:16 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/07 18:45:44 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ typedef struct			s_tetramino
 
 t_tetramino				*create_list(char *s);
 int						*node_filling(char *s, int count);
+
 char					*create_map(t_tetramino work_list, char *array);
+char					*map_increase(char *s);
+
 char					*algorithm(t_tetramino *t, char *s);
+t_tetramino				*zeroing_coordinates(t_tetramino *work_list);
+t_tetramino				*call_previous_tetramino(t_tetramino *work_list, t_tetramino *head);
+void					clear_print_tetramino(t_tetramino *work_list, char *s);
+int						str_len_slan_n(char *s);
+
+int						print_tetramino_on_map(t_tetramino *work_list, char *s);
+
+int						move_tetramino_on_step(t_tetramino *work_list, char *s);
+int						move_tetramino_x(t_tetramino *work_list);
+int						move_tetramino_y(t_tetramino *work_list);
+
 #endif
