@@ -6,23 +6,11 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/07 21:10:07 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/08 20:07:27 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void copy_struct(t_tetramino *dst, t_tetramino *src)
-{
-    int i;
-
-    i = 0;
-    while (i < 8)
-    {
-        dst->blockcoords[i] = src->blockcoords[i];
-        i++;
-    }
-}
 
 int count_slash_n(char *s)
 {
@@ -40,24 +28,42 @@ int count_slash_n(char *s)
     return (n);
 }
 
-int check_slash_null(t_tetramino *check, int *coord_o)
+int check_slash_null(t_tetramino *work_list, int *coord_o)
 {
-    t_tetramino *tmp;
-
-    tmp = (t_tetramino *)malloc(sizeof(t_tetramino));
-    tmp->blockcoords = (int *)malloc(8 * sizeof(int));
-    copy_struct(tmp, check);
-    move_tetramino_y(tmp);
-    if (tmp->blockcoords[1] == coord_o[1])
+    // int i = 0;
+    // t_tetramino *tmp;
+    // tmp = (t_tetramino *)malloc(sizeof(t_tetramino));
+    // tmp->blockcoords = (int *)malloc(8 * sizeof(int));
+    // while (i < 8)
+    // {
+    //     tmp->blockcoords[i] = work_list->blockcoords[i];
+    //     i++;
+    // }
+    move_tetramino_y(work_list);
+    if (work_list->blockcoords[1] >= coord_o[0])
         return (-1);
-    if (tmp->blockcoords[3] == coord_o[1])
+    if (work_list->blockcoords[3] >= coord_o[0])
         return (-1);
-    if (tmp->blockcoords[5] == coord_o[1])
+    if (work_list->blockcoords[5] >= coord_o[0])
         return (-1);
-    if (tmp->blockcoords[7] == coord_o[1])
+    if (work_list->blockcoords[7] >= coord_o[0])
         return (-1);
     return (1);
 }
+
+int check_o(t_tetramino *work_list, int *coord_o)
+{
+    if (work_list->blockcoords[1] >= coord_o[0])
+        return (-1);
+    if (work_list->blockcoords[3] >= coord_o[0])
+        return (-1);
+    if (work_list->blockcoords[5] >= coord_o[0])
+        return (-1);
+    if (work_list->blockcoords[7] >= coord_o[0])
+        return (-1);
+    return (1);
+}
+
 
 void fill_coordinate_n(int *coord_n, char *s, int n)
 {
@@ -79,36 +85,18 @@ void fill_coordinate_n(int *coord_n, char *s, int n)
     }
 }
 
-void fill_coordinate_o(int *coord_o, int n)
-{
-    coord_o[0] = 0;
-    coord_o[1] = ++n;
-}
-
-
 int check_transfer(t_tetramino *work_list, char *s)
 {
     int i;
     int j;
-    // int k = 0;
     int n;
     int m;
     int *coord_n;
-    int *coord_o;
-    t_tetramino *check;
 
     n = count_slash_n(s);
     m = str_len_slan_n(s);
     coord_n = (int *)malloc(n * 2 * sizeof(int));
-    coord_o = (int *)malloc(2 * sizeof(int));
-    check = (t_tetramino *)malloc(sizeof(t_tetramino));
-    check->blockcoords = (int *)malloc(8 * sizeof(int));
     fill_coordinate_n(coord_n, s, m);
-    fill_coordinate_o(coord_o, n);
-    copy_struct(check, work_list);
-
-    move_tetramino_x(check);
-
 
     j = 0;
     while (j < n * 2)
@@ -116,18 +104,12 @@ int check_transfer(t_tetramino *work_list, char *s)
         i = 0;
         while (i < 8)
         {
-
-            if (check->blockcoords[i] == coord_n[j])
+            if (work_list->blockcoords[i] == coord_n[j])
             {
                 i++;
                 j++;
-                if (check->blockcoords[i] == coord_n[j])
-                {
-                    if (check_slash_null(check, coord_o) == 1)
-                        return (1);
-                    else
-                        return (-1);
-                }
+                if (work_list->blockcoords[i] == coord_n[j])
+                    return (11);
                 else
                 {
                     i--;
@@ -138,20 +120,35 @@ int check_transfer(t_tetramino *work_list, char *s)
         }
         j = j + 2;
     }
-    return (0);
+    return (10);
 }
 
 
 int move_tetramino_on_step(t_tetramino *work_list, char *s)
 {
+    int *coord_o = NULL;
+    int n;
     int r = 0;
+    int ro = 0;
 
+    n = count_slash_n(s);
+    coord_o = (int *)malloc(1 * sizeof(int));
+    coord_o[0] = n;
+    ro = check_o(work_list, coord_o);
+    if (ro == -1)
+        return (-1);
+    move_tetramino_x(work_list);
     r = check_transfer(work_list, s);
-    if (r == 0)
-        return (move_tetramino_x(work_list));
-    if (r == 1)
-        return(move_tetramino_y(work_list));
+
     if (r == -1)
         return (-1);
+    if (r == 10)
+        return (10);
+    if (r == 11)
+    {
+        if (check_slash_null(work_list, coord_o) == -1)
+            return (-1);
+        return(11);
+    }
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/07 18:45:44 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/08 16:44:25 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 typedef struct			s_tetramino
 {
 	int					*blockcoords;
-	int					x;
-	int					y;
+	int					logic;
 	char				letter;
 	struct s_tetramino	*next;
 }						t_tetramino;
@@ -38,9 +37,10 @@ char					*map_increase(char *s);
 
 char					*algorithm(t_tetramino *t, char *s);
 t_tetramino				*zeroing_coordinates(t_tetramino *work_list);
-t_tetramino				*call_previous_tetramino(t_tetramino *work_list, t_tetramino *head);
+t_tetramino				*call_previous_tetramino(t_tetramino *head);
 void					clear_print_tetramino(t_tetramino *work_list, char *s);
 int						str_len_slan_n(char *s);
+void					tetramino_installation_label(t_tetramino *work_list, int mark);
 
 int						print_tetramino_on_map(t_tetramino *work_list, char *s);
 

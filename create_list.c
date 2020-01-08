@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 11:56:06 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/05 20:42:56 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/08 16:20:33 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void pushBack(t_tetramino *head, char *s, int count)
     tmp = (t_tetramino *)malloc(sizeof(t_tetramino));
     blockcoords = (int*)malloc(8 * sizeof(int));
     tmp->blockcoords = node_filling(s, count);
-    tmp->x = tmp->blockcoords[0];
-    tmp->y = tmp->blockcoords[1];
+    tmp->logic = 0;
     tmp->letter = *letter_filling(count);
     tmp->next = NULL;
     last->next = tmp;
@@ -56,8 +55,7 @@ void push(t_tetramino **head, char *s, int count)
     tmp = (t_tetramino*)malloc(sizeof(t_tetramino));
     blockcoords = (int*)malloc(8 * sizeof(int));
     tmp->blockcoords = node_filling(s, count);
-    tmp->x = tmp->blockcoords[0];
-    tmp->y = tmp->blockcoords[1];
+    tmp->logic = 0;
     tmp->letter = *letter_filling(count);
     tmp->next = *head;
     *head = tmp;

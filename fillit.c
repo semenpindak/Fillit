@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/07 16:05:03 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/08 16:24:23 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main (int argc, char *argv[])
 {
 	char		buffer[BUFF_SIZE + 1];
 	t_tetramino	*work_list;
-	char *s;
+	char *s = NULL;
 	// int i;
 
 	if (argc == 2)
@@ -36,7 +36,7 @@ int main (int argc, char *argv[])
 	ft_putstr(s);
 
 
-
+	// int i;
 	// printf("%s\n", s);
 	// while (work_list->next != NULL)
 	// {
@@ -47,8 +47,7 @@ int main (int argc, char *argv[])
 	// 		i++;
 	// 	}
 	// 	printf("\n");
-	// 	printf("%d\n", work_list->x);
-	// 	printf("%d\n", work_list->y);
+	// 	printf("%d\n", work_list->logic);
 	// 	printf("%c\n", work_list->letter);
 	// 	work_list = work_list->next;
 	// 	printf("\n");
@@ -60,8 +59,7 @@ int main (int argc, char *argv[])
 	// 	i++;
 	// }
 	// printf("\n");
-	// printf("%d\n", work_list->x);
-	// printf("%d\n", work_list->y);
+	// printf("%d\n", work_list->logic);
 	// printf("%c\n", work_list->letter);
 	// work_list = work_list->next;
 	// printf("\n");
