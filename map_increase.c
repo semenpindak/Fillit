@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   map_increase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:08:32 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/07 18:18:22 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/10 01:06:15 by semen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char *map_increase(char *s)
+char *map_increase(int n)
 {
 	char *matrix;
-	int n;
 	int k;
 	int i;
 
-	n = str_len_slan_n(s);
 	n++;
 	k = n;
 	i = 0;

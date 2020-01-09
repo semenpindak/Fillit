@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/09 17:38:04 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/10 01:06:32 by semen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "libft/libft.h"
-# include <stdio.h> //не забыть потом удалить
 
 # define BUFF_SIZE 545
 
@@ -31,22 +30,17 @@ typedef struct			s_tetramino
 
 t_tetramino				*create_list(char *s);
 int						*node_filling(char *s, int count);
-
 char					*create_map(t_tetramino work_list, char *array);
-char					*map_increase(char *s);
-
+char					*map_increase(int n);
 char					*algorithm(t_tetramino *t, char *s);
 t_tetramino				*zeroing_coordinates(t_tetramino *work_list);
 t_tetramino				*call_previous_tetramino(t_tetramino *head);
 void					clear_print_tetramino(t_tetramino *work_list, char *s);
 int						str_len_slan_n(char *s);
 void					insertion_mark(t_tetramino *work_list, int mark);
-
-int						print_tetramino_on_map(t_tetramino *work_list, char *s);
-
-int						move_tetramino_on_step(t_tetramino *work_list, char *s);
+int						print_tetramino_on_map(t_tetramino *work_list, char *s, int n);
+int						move_tetramino_on_step(t_tetramino *work_list, int n);
 int						move_tetramino_x(t_tetramino *work_list);
 int						move_tetramino_y(t_tetramino *work_list);
-
 int						count_node(t_tetramino *work_list);
 #endif
