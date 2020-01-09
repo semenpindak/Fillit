@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 17:01:16 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/08 16:22:33 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/09 18:07:58 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int check_size_figure(t_tetramino work_list)
 			max_y = m;
 		i++;
 	}
-
 	if (max_x >= max_y)
 		return (++max_x);
 	else
@@ -71,7 +70,6 @@ char	*create_map(t_tetramino work_list, char *array)
 	z = 0;
 	a = ft_sqrt(count_octothorpe(array));
 	b = check_size_figure(work_list);
-	// printf("%d %d\n", a, b);
 	if (a >= b)
 	{
 		k = a;

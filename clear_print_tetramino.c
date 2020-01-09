@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:01:04 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/08 16:56:27 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/09 18:05:52 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void clear_print_tetramino(t_tetramino *work_list, char *s)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (s[i] != '\0')
 	{
 		if (work_list->letter == s[i])
