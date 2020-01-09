@@ -6,13 +6,13 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 13:06:32 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/08 16:20:26 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/09 17:38:44 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int        *move_tetramino_to_zero(int *s)
+int     *move_tetramino_to_zero(int *s)
 {
     int i;
     int minx;
@@ -55,7 +55,6 @@ int *converting_array_to_coord(char *s)
 
     i = 0;
     j = 0;
-    // int k = 0;
     if (!(array_coord = (int*)malloc(8 * sizeof(int))))
         return (NULL);
     while (s[i] != '\0')
@@ -72,12 +71,6 @@ int *converting_array_to_coord(char *s)
         i++;
     }
     array_coord = move_tetramino_to_zero(array_coord);
-    // while (k < 8)
-    // {
-    //     printf("%d ", array_coord[k]);
-    //     k++;
-    // }
-    // printf("\n");
     return(array_coord);
 }
 
@@ -116,7 +109,5 @@ int *node_filling(char *s, int count)
 
     i = 21 * (count / 4 - 1);
     tmp = fillit_strsub(s, i, 16);
-    // printf("%s\n", tmp);
-    // printf("%s\n", tmp);
     return (converting_array_to_coord(tmp));
 }

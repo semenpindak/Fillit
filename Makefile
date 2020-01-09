@@ -13,7 +13,8 @@ SRCS:=	fillit.c\
 		move_tetramino_on_step.c\
 		move_tetramino_x.c\
 		move_tetramino_y.c\
-		tetramino_installation_label.c
+		insertion_mark.c\
+		count_node.c
 OBJ:= $(SRCS:c=o)
 PROGRAM = fillit
 

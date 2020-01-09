@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   count_node.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/09 18:03:38 by calpha           ###   ########.fr       */
+/*   Created: 2020/01/09 13:31:48 by calpha            #+#    #+#             */
+/*   Updated: 2020/01/09 13:34:49 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int main (int argc, char *argv[])
+int	count_node(t_tetramino *work_list)
 {
-	char		buffer[BUFF_SIZE + 1];
-	t_tetramino	*work_list;
-	char *s;
+	int i;
 
-	s = NULL;
-	if (argc == 2)
+	i = 0;
+	while (work_list != NULL)
 	{
-		read(open(argv[1], O_RDONLY), buffer, BUFF_SIZE);
-		buffer[BUFF_SIZE] = '\0';
+		work_list = work_list->next;
+		i++;
 	}
-	if (argc != 2)
-	{
-		ft_putstr("usage: ./fillit [file name] source file\n");
-		exit(0);
-	}
-	work_list = create_list(buffer);
-	s = create_map(*work_list, buffer);
-	s = algorithm(work_list, s);
-	ft_putstr(s);
-	return (0);
+	return (i);
 }

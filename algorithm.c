@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/08 20:07:36 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/09 17:59:26 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,217 +15,61 @@
 char *algorithm(t_tetramino *work_list, char *s)
 {
     t_tetramino *head;
-    char *sm = NULL;
-    sm = ft_strdup(s);
     head = work_list;
-    // int r = 1;
+    int r = 2;
+    int i = 0;
+    int m;
+    int l = 0;
+    int a = 0;
 
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
+    m = count_node(work_list);
 
-    sm = ft_strdup(s);
-    printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    sm = ft_strdup(s);
-    printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    sm = ft_strdup(s);
-    printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    int k = 0;
-    while (k < 8)
+    while (i < m)
     {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
+        while (l != -1)
+        {
+            r = print_tetramino_on_map(work_list, s);
+            if (r == 1)
+            {
+                insertion_mark(work_list, r);
+                break;
+            }
+            if (r == 0)
+            {
+                l = move_tetramino_on_step(work_list, s);
+                if (l == -1)
+                    insertion_mark(work_list, l);
+            }
+        }
+        a = i;
+        a++;
+        if (a >= m && l != -1)
+            break;
+        if (work_list->logic == -1 && work_list->letter == 'A')
+        {
+            s = map_increase(s);
+            work_list = head;
+            zeroing_coordinates(work_list);
+            l = 0;
+            i = 0;
+            continue;
+        }
+        if (work_list->logic == 1)
+        {
+            work_list = work_list->next;
+            zeroing_coordinates(work_list);
+            work_list->logic = 0;
+            i++;
+        }
+        if (work_list->logic == -1)
+        {
+            work_list = call_previous_tetramino(head);
+            work_list->logic = 0;
+            clear_print_tetramino(work_list, s);
+            move_tetramino_on_step(work_list, s);
+            l = 0;
+            i--;
+        }
     }
-    printf("\n");
-    sm = ft_strdup(s);
-    printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    k = 0;
-    while (k < 8)
-    {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
-    }
-    printf("\n");
-
-    sm = ft_strdup(s);
-    printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    k = 0;
-    while (k < 8)
-    {
-        printf("%d ", work_list->blockcoords[k]);
-        k++;
-    }
-    printf("\n");
-
-    // sm = ft_strdup(s);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    //     sm = ft_strdup(s);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    //     sm = ft_strdup(s);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    //     sm = ft_strdup(s);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // int k = 0;
-    // while (k < 8)
-    // {
-    //     printf("%d ", work_list->blockcoords[k]);
-    //     k++;
-    // }
-    // printf("\n");
-
-    //         sm = ft_strdup(s);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // k = 0;
-    // while (k < 8)
-    // {
-    //     printf("%d ", work_list->blockcoords[k]);
-    //     k++;
-    // }
-    // printf("\n");
-
-    // tetramino_installation_label(work_list, r);
-    // printf("logic=%d\n", work_list->logic);
-    // work_list = work_list->next;
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", r = move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // tetramino_installation_label(work_list, r);
-    // printf("logic=%d\n", work_list->logic);
-
-    // work_list = work_list->next;
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", r = move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", r = move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", r = move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", r = move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // tetramino_installation_label(work_list, r);
-    // printf("logic=%d\n", work_list->logic);
-
-    // work_list = call_previous_tetramino(head);
-    // clear_print_tetramino(work_list, sm);
-    // printf("%c\n", work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // work_list = work_list->next;
-    // zeroing_coordinates(work_list);
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // work_list = call_previous_tetramino(head);
-    // clear_print_tetramino(work_list, sm);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // work_list = work_list->next;
-    // zeroing_coordinates(work_list);
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // work_list = call_previous_tetramino(head);
-    // clear_print_tetramino(work_list, sm);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // work_list = call_previous_tetramino(head);
-    // clear_print_tetramino(work_list, sm);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // sm = map_increase(sm);
-    // work_list = head;
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // work_list = work_list->next;
-    // work_list = zeroing_coordinates(work_list);
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // work_list = work_list->next;
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // work_list = work_list->next;
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    //     // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-    //     // printf("m=%d ", move_tetramino_on_step(work_list, sm));
-    // // printf("p=%d %c\n", print_tetramino_on_map(work_list, sm), work_list->letter);
-
-    return (sm);
+    return (s);
 }

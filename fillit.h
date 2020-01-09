@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/08 16:44:25 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/09 17:38:04 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_tetramino				*zeroing_coordinates(t_tetramino *work_list);
 t_tetramino				*call_previous_tetramino(t_tetramino *head);
 void					clear_print_tetramino(t_tetramino *work_list, char *s);
 int						str_len_slan_n(char *s);
-void					tetramino_installation_label(t_tetramino *work_list, int mark);
+void					insertion_mark(t_tetramino *work_list, int mark);
 
 int						print_tetramino_on_map(t_tetramino *work_list, char *s);
 
@@ -48,4 +48,5 @@ int						move_tetramino_on_step(t_tetramino *work_list, char *s);
 int						move_tetramino_x(t_tetramino *work_list);
 int						move_tetramino_y(t_tetramino *work_list);
 
+int						count_node(t_tetramino *work_list);
 #endif
