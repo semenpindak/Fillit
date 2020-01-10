@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_print_tetramino.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:01:04 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 00:04:39 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/10 10:38:08 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	clear_print_tetramino(t_tetramino *work_list, char *s)
 {
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
+	while (*s != '\0')
 	{
-		if (work_list->letter == s[i])
-			s[i] = '.';
-		i++;
+		if (work_list->letter == *s)
+			*s = '.';
+		s++;
 	}
 }

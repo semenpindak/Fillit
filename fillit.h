@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 01:06:32 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/10 10:14:49 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ int						print_tetramino_on_map(t_tetramino *work_list, char *s, int n);
 int						move_tetramino_on_step(t_tetramino *work_list, int n);
 int						move_tetramino_x(t_tetramino *work_list);
 int						move_tetramino_y(t_tetramino *work_list);
-int						count_node(t_tetramino *work_list);
 #endif
