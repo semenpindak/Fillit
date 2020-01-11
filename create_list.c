@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 11:56:06 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 00:18:40 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/10 13:20:59 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void pushBack(t_tetramino *head, char *s, int count)
 {
 	t_tetramino *last;
 	t_tetramino *tmp;
-	int *blockcoords = NULL;
+	int *blockcoords;
 
 	last = getLast(head);
 	tmp = (t_tetramino *)malloc(sizeof(t_tetramino));
@@ -44,21 +44,22 @@ void pushBack(t_tetramino *head, char *s, int count)
 	tmp->logic = 0;
 	tmp->letter = *letter_filling(count);
 	tmp->next = NULL;
+	tmp->prev = last;
 	last->next = tmp;
 }
-
 
 void push(t_tetramino **head, char *s, int count)
 {
 	t_tetramino *tmp;
-	int *blockcoords = NULL;
+	int *blockcoords;
 
 	tmp = (t_tetramino*)malloc(sizeof(t_tetramino));
 	blockcoords = (int*)malloc(8 * sizeof(int));
 	tmp->blockcoords = node_filling(s, count);
 	tmp->logic = 0;
 	tmp->letter = *letter_filling(count);
-	tmp->next = *head;
+	tmp->next = NULL;
+	tmp->prev = NULL;
 	*head = tmp;
 }
 

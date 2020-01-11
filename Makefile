@@ -5,15 +5,14 @@ SRCS:=	fillit.c\
 		create_map.c\
 		algorithm.c\
 		zeroing_coordinates.c\
-		call_previous_tetramino.c\
 		clear_print_tetramino.c\
 		map_increase.c\
 		print_tetramino_on_map.c\
 		str_len_slan_n.c\
 		move_tetramino_on_step.c\
 		move_tetramino_x.c\
-		move_tetramino_y.c\
-		insertion_mark.c
+		insertion_mark.c\
+		move_tetramino_y.c
 OBJ:= $(SRCS:c=o)
 PROGRAM = fillit
 

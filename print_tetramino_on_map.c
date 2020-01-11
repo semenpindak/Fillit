@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tetramino_on_map.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:23:13 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 01:09:30 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/10 12:22:42 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ int check_possible_print_tetramino(t_tetramino *work_list, char *s, int n)
 
 	while (s[i] != '\0')
 	{
-		if (s[i] == '.')
+		if (work_list->blockcoords[j] == (z % n))
 		{
-			if (work_list->blockcoords[j] == (z % n))
+			j++;
+			if (work_list->blockcoords[j] == k)
 			{
+				if (s[i] != '.')
+					break;
 				j++;
-				if (work_list->blockcoords[j] == k)
-				{
-					j++;
-					m++;
-					if (m == 4)
-						return (1);
-				}
-				else
-					j--;
+				m++;
+				if (m == 4)
+					return (1);
 			}
+			else
+				j--;
 		}
 		z++;
 		if (s[i] == '\n')
@@ -60,21 +59,18 @@ int print_tetramino_on_map(t_tetramino *work_list, char *s, int n)
 	{
 		while (s[i] != '\0')
 		{
-			if (s[i] == '.')
+			if (work_list->blockcoords[j] == (z % n))
 			{
-				if (work_list->blockcoords[j] == (z % n))
+				j++;
+				if (work_list->blockcoords[j] == k)
 				{
 					j++;
-					if (work_list->blockcoords[j] == k)
-					{
-						j++;
-						s[i] = work_list->letter;
-						if (j == 8)
-							return (1);
-					}
-					else
-						j--;
+					s[i] = work_list->letter;
+					if (j == 8)
+						return (1);
 				}
+				else
+					j--;
 			}
 			z++;
 			if (s[i] == '\n')

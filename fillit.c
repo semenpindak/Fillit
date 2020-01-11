@@ -6,17 +6,17 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/09 18:03:38 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/10 14:17:53 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int main (int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char		buffer[BUFF_SIZE + 1];
 	t_tetramino	*work_list;
-	char *s;
+	char		*s;
 
 	s = NULL;
 	if (argc == 2)
@@ -33,5 +33,6 @@ int main (int argc, char *argv[])
 	s = create_map(*work_list, buffer);
 	s = algorithm(work_list, s);
 	ft_putstr(s);
+	ft_strdel(&s);
 	return (0);
 }

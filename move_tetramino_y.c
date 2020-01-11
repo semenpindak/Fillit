@@ -6,13 +6,13 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:42:05 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/09 17:37:36 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/10 14:15:10 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int check_difference(t_tetramino *work_list)
+int	check_difference(t_tetramino *work_list)
 {
 	int i;
 	int difference;
@@ -29,11 +29,10 @@ int check_difference(t_tetramino *work_list)
 			min = difference;
 		i++;
 	}
-	return(min);
+	return (min);
 }
 
-
-int move_tetramino_y(t_tetramino *work_list)
+int	move_tetramino_y(t_tetramino *work_list)
 {
 	int i;
 	int n;

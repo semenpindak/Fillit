@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   map_increase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:08:32 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 01:06:15 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/10 13:41:46 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char *map_increase(int n)
+char	*map_increase(int n)
 {
-	char *matrix;
-	int k;
-	int i;
+	char	*matrix;
+	int		k;
+	int		i;
 
-	n++;
 	k = n;
 	i = 0;
 	matrix = (char *)malloc(((n * n + n) + 1) * sizeof(char));
