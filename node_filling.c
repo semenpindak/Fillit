@@ -6,13 +6,29 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 13:06:32 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 14:24:58 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/11 18:48:01 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		*move_tetramino_to_zero(int *s)
+static int	*rec_new_coordinate(int *array_coord, int minx, int miny)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (i % 2 == 0)
+			array_coord[i] = array_coord[i] - minx;
+		else
+			array_coord[i] = array_coord[i] - miny;
+		i++;
+	}
+	return (array_coord);
+}
+
+static int	*move_tetramino_to_zero(int *array_coord)
 {
 	int i;
 	int minx;
@@ -25,41 +41,30 @@ int		*move_tetramino_to_zero(int *s)
 	{
 		if (i % 2 == 0)
 		{
-			if (minx > s[i])
-				minx = s[i];
+			if (minx > array_coord[i])
+				minx = array_coord[i];
 		}
 		else
 		{
-			if (miny > s[i])
-				miny = s[i];
+			if (miny > array_coord[i])
+				miny = array_coord[i];
 		}
 		i++;
 	}
-	i = 0;
-	while (i < 8)
-	{
-		if (i % 2 == 0)
-			s[i] = s[i] - minx;
-		else
-			s[i] = s[i] - miny;
-		i++;
-	}
-	return(s);
+	array_coord = rec_new_coordinate(array_coord, minx, miny);
+	return (array_coord);
 }
 
-int		*converting_array_to_coord(char *s)
+static int	*converting_array_to_coord(char *new_s, int *array_coord)
 {
-	int *array_coord;
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	if (!(array_coord = (int*)malloc(8 * sizeof(int))))
-		return (NULL);
-	while (s[i] != '\0')
+	while (new_s[i] != '\0')
 	{
-		if (s[i] == '#')
+		if (new_s[i] == '#')
 		{
 			array_coord[j] = i % 4;
 			j++;
@@ -67,14 +72,15 @@ int		*converting_array_to_coord(char *s)
 			j++;
 		}
 		if (j == 8)
-			break;
+			break ;
 		i++;
 	}
+	free(new_s);
 	array_coord = move_tetramino_to_zero(array_coord);
-	return(array_coord);
+	return (array_coord);
 }
 
-char	*fillit_strsub(char const *s, unsigned int start, size_t len)
+static char	*fillit_strsub(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -92,7 +98,7 @@ char	*fillit_strsub(char const *s, unsigned int start, size_t len)
 		if (s[start + j] == '\n')
 		{
 			j++;
-			continue;
+			continue ;
 		}
 		new[i] = s[start + j];
 		i++;
@@ -102,12 +108,12 @@ char	*fillit_strsub(char const *s, unsigned int start, size_t len)
 	return (new);
 }
 
-int		*node_filling(char *s, int count)
+int			*node_filling(char *s, int count, int *blockcoords)
 {
 	int		i;
 	char	*tmp;
 
 	i = 21 * (count / 4 - 1);
 	tmp = fillit_strsub(s, i, 16);
-	return (converting_array_to_coord(tmp));
+	return (converting_array_to_coord(tmp, blockcoords));
 }

@@ -6,20 +6,25 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:23:13 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 12:22:42 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/11 18:51:57 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int check_possible_print_tetramino(t_tetramino *work_list, char *s, int n)
+static int	check_print(t_tetramino *work_list, char *s, int n)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int z = 0;
-	int m = 0;
+	int i;
+	int j;
+	int k;
+	int z;
+	int m;
 
+	i = 0;
+	j = 0;
+	k = 0;
+	z = 0;
+	m = 0;
 	while (s[i] != '\0')
 	{
 		if (work_list->blockcoords[j] == (z % n))
@@ -28,7 +33,7 @@ int check_possible_print_tetramino(t_tetramino *work_list, char *s, int n)
 			if (work_list->blockcoords[j] == k)
 			{
 				if (s[i] != '.')
-					break;
+					break ;
 				j++;
 				m++;
 				if (m == 4)
@@ -48,14 +53,18 @@ int check_possible_print_tetramino(t_tetramino *work_list, char *s, int n)
 	return (0);
 }
 
-int print_tetramino_on_map(t_tetramino *work_list, char *s, int n)
+int			print_tetramino_on_map(t_tetramino *work_list, char *s, int n)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int z = 0;
+	int i;
+	int j;
+	int k;
+	int z;
 
-	if (check_possible_print_tetramino(work_list, s, n))
+	i = 0;
+	j = 0;
+	k = 0;
+	z = 0;
+	if (check_print(work_list, s, n))
 	{
 		while (s[i] != '\0')
 		{

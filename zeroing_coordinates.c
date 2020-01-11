@@ -6,13 +6,29 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:44:33 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 10:52:24 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/11 18:56:23 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_tetramino *zeroing_coordinates(t_tetramino *work_list)
+static t_tetramino	*rec_coordinates(t_tetramino *work_list, int minx, int miny)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (i % 2 == 0)
+			work_list->blockcoords[i] = work_list->blockcoords[i] - minx;
+		else
+			work_list->blockcoords[i] = work_list->blockcoords[i] - miny;
+		i++;
+	}
+	return (work_list);
+}
+
+t_tetramino			*zeroing_coordinates(t_tetramino *work_list)
 {
 	int i;
 	int minx;
@@ -35,14 +51,6 @@ t_tetramino *zeroing_coordinates(t_tetramino *work_list)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < 8)
-	{
-		if (i % 2 == 0)
-			work_list->blockcoords[i] = work_list->blockcoords[i] - minx;
-		else
-			work_list->blockcoords[i] = work_list->blockcoords[i] - miny;
-		i++;
-	}
+	work_list = rec_coordinates(work_list, minx, miny);
 	return (work_list);
 }

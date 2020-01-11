@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 17:01:16 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 14:11:13 by calpha           ###   ########.fr       */
+/*   Updated: 2020/01/11 18:36:07 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,36 @@ static int	check_size_figure(t_tetramino work_list)
 	return (i);
 }
 
-int			count_octothorpe(char *array)
+static int	count_octothorpe(char *buffer)
 {
 	int i;
+	int j;
 
 	i = 0;
-	while (*array != '\0')
+	j = 0;
+	while (buffer[i] != '\0')
 	{
-		if (*array == '#')
-			i++;
-		array++;
+		if (buffer[i] == '#')
+			j++;
+		i++;
 	}
-	return (i);
+	return (j);
 }
 
-char		*create_map(t_tetramino work_list, char *array)
+char		*create_map(t_tetramino work_list, char *buffer)
 {
-	static char	*matrix;
-	int			i;
-	int			k;
-	int			z;
+	char	*matrix;
+	int		i;
+	int		k;
+	int		z;
 
 	i = 0;
-	k = (ft_sqrt(count_octothorpe(array)) >= check_size_figure(work_list)) ?
-		ft_sqrt(count_octothorpe(array)) : check_size_figure(work_list);
+	k = (ft_sqrt(count_octothorpe(buffer)) >= check_size_figure(work_list)) ?
+		ft_sqrt(count_octothorpe(buffer)) : check_size_figure(work_list);
 	z = k;
-	matrix = (char *)malloc(((z * z + z) + 1) * sizeof(char));
-	matrix = ft_memset(matrix, '.', (z * z + z));
+	if (!(matrix = (char *)malloc(((z * z + z) + 1) * sizeof(char))))
+		return (NULL);
+	ft_memset(matrix, '.', (z * z + z));
 	matrix[(z * z + z)] = '\0';
 	while (i < z)
 	{

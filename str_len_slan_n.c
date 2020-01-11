@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   str_len_slan_n.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semen <semen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:26:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 00:00:05 by semen            ###   ########.fr       */
+/*   Updated: 2020/01/11 18:56:50 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int str_len_slan_n(char *s)
+int	str_len_slan_n(char *s)
 {
 	int i;
 
@@ -20,7 +20,7 @@ int str_len_slan_n(char *s)
 	while (s[i] != '\0')
 	{
 		if (s[i] == '\n')
-			break;
+			break ;
 		i++;
 	}
 	return (i);
