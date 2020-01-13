@@ -10,7 +10,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/calpha/Documents/Fillit/fillit",
-			"args": ["/Users/calpha/Documents/Fillit/primer/2medium.txt"],
+			"args": ["/Users/calpha/Documents/Fillit/primer/5_test.txt"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
