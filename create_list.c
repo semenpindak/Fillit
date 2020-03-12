@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 11:56:06 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/11 19:01:36 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:16:52 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,29 +68,19 @@ t_tetramino			*create_list(char *buffer)
 	t_tetramino	*list;
 	int			i;
 	int			count;
-	int			check;
 
 	list = NULL;
 	i = 0;
 	count = 0;
-	check = 0;
 	while (buffer[i] != '\0')
 	{
 		if (buffer[i] == '#')
 		{
 			count++;
-			if (count % 4 == 0)
-				check = 1;
-		}
-		if (count == 4 && check)
-		{
-			push(&list, buffer, count);
-			check = 0;
-		}
-		if (count % 4 == 0 && check)
-		{
-			push_back(list, buffer, count);
-			check = 0;
+			if (count == 4)
+				push(&list, buffer, count);
+			if (count % 4 == 0 && count != 4)
+				push_back(list, buffer, count);
 		}
 		i++;
 	}

@@ -12,11 +12,12 @@ SRCS:=	fillit.c\
 		move_tetramino_on_step.c\
 		move_tetramino_x.c\
 		move_tetramino_y.c\
-		insertion_mark.c
+		validation.c\
+		validation_block.c
 OBJ:= $(SRCS:c=o)
 PROGRAM = fillit
 
-.PHONY: all
+.PHONY: all clean fclean re
 all: $(PROGRAM)
 
 $(PROGRAM): ${OBJ}
@@ -24,10 +25,11 @@ $(PROGRAM): ${OBJ}
 	${CC} $(CFLAGS) ${OBJ} -o $@ -L libft/ -lft
 
 %.o: %.c
-	${CC} ${CFLAGS} -g -c $<
+	${CC} ${CFLAGS} -g -MD -c $<
+include $(wildcard *.d)
 
 clean:
-	rm -f $(OBJ) && make clean -C libft/
+	rm -f $(OBJ) *.d && make clean -C libft/
 
 fclean: clean
 	rm -f $(PROGRAM) && make fclean -C libft/

@@ -6,22 +6,20 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/11 18:59:36 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:26:00 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*algorithm(t_tetramino *work_list, char *s)
+char	*algorithm(t_tetramino *work_list, char *s, int n)
 {
 	t_tetramino	*head;
 	int			r;
 	int			l;
-	int			n;
 
 	head = work_list;
 	l = 0;
-	n = str_len_slan_n(s);
 	while (work_list)
 	{
 		while (l != -1)
@@ -29,12 +27,11 @@ char	*algorithm(t_tetramino *work_list, char *s)
 			r = print_tetramino_on_map(work_list, s, n);
 			if (r == 1)
 			{
-				insertion_mark(work_list, r);
+				work_list->logic = 1;
 				break ;
 			}
 			if (r == 0)
-				if ((l = move_tetramino_on_step(work_list, n)) == -1)
-					insertion_mark(work_list, l);
+				l = move_tetramino_on_step(work_list, n);
 		}
 		if (work_list->next == NULL && l != -1)
 			break ;

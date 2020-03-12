@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/11 19:31:51 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:13:48 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int			move_tetramino_on_step(t_tetramino *work_list, int n)
 		move_tetramino_y(work_list);
 		r = check_o(work_list, n);
 		if (r == -1)
+		{
+			work_list->logic = -1;
 			return (-1);
+		}
 		return (11);
 	}
 	return (0);

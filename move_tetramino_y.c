@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:42:05 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/11 19:04:38 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:24:54 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ int	move_tetramino_y(t_tetramino *work_list)
 		if (j % 2 == 0)
 		{
 			tmpx = work_list->blockcoords[i];
-			tmpx -= difference;
-			work_list->blockcoords[i] = tmpx;
+			work_list->blockcoords[i] = tmpx - difference;
 		}
 		if (j % 2 != 0)
 		{
 			tmpy = work_list->blockcoords[i];
-			tmpy++;
-			work_list->blockcoords[i] = tmpy;
+			work_list->blockcoords[i] = ++tmpy;
 		}
 		i++;
 		j++;
