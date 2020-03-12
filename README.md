@@ -7,11 +7,11 @@ Run 'make', an executable called 'fillit' should compile directly. Please submit
 
 ## Usage
 
-'./fillit [file]'
+`./fillit [file]`
 
 ## Example:
 
-'''
+```
 ~ ./fillit samples/8_tetramino.txt
 
 ABBBB.
@@ -20,4 +20,4 @@ AFFCEE
 A.FFGG
 HHHDDG
 .HDD.G
-'''
+```
