@@ -3,7 +3,7 @@
 Placement of tetramino on the minimum square area by backtracking.
 
 ## Compiling
-Run 'make', an executable called 'fillit' should compile directly. Please submit an issue if you run into any problems.
+Run `make`, an executable called `fillit` should compile directly. Please submit an issue if you run into any problems.
 
 ## Usage
 
