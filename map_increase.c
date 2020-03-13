@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:08:32 by calpha            #+#    #+#             */
-/*   Updated: 2020/01/10 13:41:46 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/13 13:59:47 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*map_increase(int n)
 
 	k = n;
 	i = 0;
-	matrix = (char *)malloc(((n * n + n) + 1) * sizeof(char));
+	if (!(matrix = (char *)malloc(((n * n + n) + 1) * sizeof(char))))
+		return (NULL);
 	matrix = ft_memset(matrix, '.', (n * n + n));
 	matrix[(n * n + n)] = '\0';
 	while (i < n)

@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/03/12 14:45:21 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/13 14:39:10 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
-# define BUFF_SIZE 545
+# define BUFF_SIZE 546
 
 # define IV (int[8]) {0, 0, 0, 1, 0, 2, 0, 3}
 # define IH (int[8]) {0, 0, 1, 0, 2, 0, 3, 0}

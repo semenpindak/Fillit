@@ -6,7 +6,7 @@
 /*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/03/10 12:26:00 by calpha           ###   ########.fr       */
+/*   Updated: 2020/03/13 14:50:55 by calpha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*algorithm(t_tetramino *work_list, char *s, int n)
 		if (work_list->logic == -1 && work_list->letter == 'A')
 		{
 			work_list = head;
+			free(s);
 			s = map_increase(++n);
 			zeroing_coordinates(work_list);
 			l = 0;
