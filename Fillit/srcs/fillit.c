@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:43:46 by calpha            #+#    #+#             */
-/*   Updated: 2020/03/13 14:40:05 by calpha           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:29:18 by oem              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	free_fillit(t_tetramino *work_list, char *s)
 
 int			main(int argc, char *argv[])
 {
-	char		buffer[BUFF_SIZE + 1];
+	char		buffer[BUFF_SIZE_F + 1];
 	t_tetramino	*work_list;
 	char		*s;
 	int			r;
@@ -41,7 +41,7 @@ int			main(int argc, char *argv[])
 	}
 	if (argc == 2)
 	{
-		r = read(open(argv[1], O_RDONLY), buffer, BUFF_SIZE);
+		r = read(open(argv[1], O_RDONLY), buffer, BUFF_SIZE_F);
 		if (r > 545)
 		{
 			ft_putstr("error\n");

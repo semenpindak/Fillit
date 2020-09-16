@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/03/13 14:39:10 by calpha           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:48:14 by oem              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "libft/libft.h"
-# include <stdio.h>
+# include "../../Libft/includes/libft.h"
 
-# define BUFF_SIZE 546
+# define BUFF_SIZE_F 546
 
 # define IV (int[8]) {0, 0, 0, 1, 0, 2, 0, 3}
 # define IH (int[8]) {0, 0, 1, 0, 2, 0, 3, 0}

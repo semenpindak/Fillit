@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_tetramino_on_step.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: calpha <calpha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:56:29 by calpha            #+#    #+#             */
-/*   Updated: 2020/03/10 12:13:48 by calpha           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:30:27 by oem              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static int	check_o(t_tetramino *work_list, int n)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
 	while (i < 8)
 	{
 		if (i % 2 != 0)
