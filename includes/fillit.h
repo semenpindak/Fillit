@@ -6,7 +6,7 @@
 /*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:06:23 by calpha            #+#    #+#             */
-/*   Updated: 2020/09/17 01:48:14 by oem              ###   ########.fr       */
+/*   Updated: 2020/10/06 12:25:21 by oem              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../../Libft/includes/libft.h"
+# include "../Libft/includes/libft.h"
 
 # define BUFF_SIZE_F 546
 

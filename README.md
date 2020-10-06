@@ -1,6 +1,6 @@
 # Fillit
 
-![Standard](https://img.shields.io/badge/standart-ANSI%20C11-lightgrey.svg)
+![Standard](https://img.shields.io/badge/standart-%20C11-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Score](https://img.shields.io/badge/school21-course%20project%20%7C%20success%20%7C%20100%2F100-brightgreen.svg)
 

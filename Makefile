@@ -6,7 +6,7 @@
 #    By: oem <oem@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/16 23:38:13 by oem               #+#    #+#              #
-#    Updated: 2020/09/17 01:47:14 by oem              ###   ########.fr        #
+#    Updated: 2020/10/06 12:24:50 by oem              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ PROGRAM := fillit
 LIBFT	:= Libft/libft.a
 
 # Name of the directories.
-INC_DIR := Fillit/includes
-SRC_DIR := Fillit/srcs
-OBJ_DIR := Fillit/objs
+INC_DIR := includes
+SRC_DIR := srcs
+OBJ_DIR := objs
 
 # Path of the directories.
 INCLS	:= $(INC_DIR)
